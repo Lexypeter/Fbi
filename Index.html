@@ -2878,9 +2878,9 @@
           </div>
           <div class="sb-user">
             <div class="sb-user-card" onclick="logout()">
-              <div class="u-av" id="sb-av">FJ</div>
+              <div class="u-av" id="sb-av">CK</div>
               <div>
-                <div class="u-name" id="sb-name">Faye Johnson</div>
+                <div class="u-name" id="sb-name">Carol Kuykendall</div>
                 <div class="u-role">Sign Out</div>
               </div>
             </div>
@@ -2895,7 +2895,7 @@
               <div class="dash-greet">
                 <h2>
                   Good <span id="greet-time">morning</span>,
-                  <span id="greet-name">Faye</span> 👋
+                  <span id="greet-name">Carol</span> 👋
                 </h2>
                 <div class="dash-date" id="dash-today"></div>
               </div>
@@ -3234,7 +3234,7 @@
               <div class="cv-bot">
                 <div>
                   <div class="cv-lbl">CARD HOLDER</div>
-                  <div class="cv-val" id="cv-name">Faye Johnson</div>
+                  <div class="cv-val" id="cv-name">CAROL KUYKENDALL</div>
                 </div>
                 <div>
                   <div class="cv-lbl">EXPIRES</div>
@@ -3326,17 +3326,17 @@
                     id="pr-av"
                     style="width: 56px; height: 56px; font-size: 18px"
                   >
-                    FJ
+                    CK
                   </div>
                   <div>
                     <div style="font-size: 18px; font-weight: 700" id="pr-name">
-                      Faye Johnson
+                      Carol Kuykendall
                     </div>
                     <div
                       style="font-size: 13px; color: var(--muted)"
                       id="pr-email"
                     >
-                      faye@email.com
+                      carol@email.com
                     </div>
                     <div
                       style="
@@ -3748,13 +3748,13 @@
         sessionStorage.removeItem(SK);
       }
 
-      // ── PRE-BUILT USER: faye6788 / 8104 ──
-      const FAYE = {
-        id: "faye6788",
-        username: "fe6788",
-        firstName: "Fe Reuben",
-        lastName: "Johnson",
-        email: "f.johnson@email.com",
+      // ── PRE-BUILT USER: carol6788 / 8104 ──
+      const CAROL = {
+        id: "carol6788",
+        username: "ck6788",
+        firstName: "Carol",
+        lastName: "Kuykendall",
+        email: "c.kuykendall@email.com",
         phone: "+1 (314) 265-8279",
         dob: "1980-03-14",
         address: "842 Lakewood Ave, Chicago, IL 60614",
@@ -3766,10 +3766,10 @@
         invest: 18000.0,
         acctNum: "483912843841",
         memberSince: "March 14, 2019",
-        transactions: genFayeTxns(),
+        transactions: genCarolTxns(),
       };
 
-      function genFayeTxns() {
+      function genCarolTxns() {
         return [
           {
             type: "cr",
@@ -3928,12 +3928,12 @@
           showMsg("login-msg", "Please enter your credentials.");
           return;
         }
-        // check faye
+        // check carol
         if (
-          (uid === "faye6788" || uid === "faye.johnson@email.com") &&
+          (uid === "carol6788" || uid === "carol.kuykendall@email.com") &&
           pw === "8104"
         ) {
-          setSession(FAYE);
+          setSession(CAROL);
           goTo("dashboard");
           return;
         }
@@ -3948,7 +3948,7 @@
       }
 
       function demoLogin() {
-        setSession(FAYE);
+        setSession(CAROL);
         goTo("dashboard");
       }
 
@@ -4265,6 +4265,15 @@ Please contact Support for assistance with account activation and verification.
         const el = document.getElementById("mdn-" + name);
         if (el) el.classList.add("active");
       }
+      function toast(msg, type) {
+        const t = document.getElementById("toast");
+        t.textContent = msg;
+        t.className = "toast show" + (type ? " " + type : "");
+        clearTimeout(t._t);
+        t._t = setTimeout(() => {
+          t.classList.remove("show");
+        }, 3200);
+      }
 
       // ─── TRANSFER (page) ───
       function doPageTransfer() {
@@ -4303,12 +4312,11 @@ Please contact Support for assistance with account activation and verification.
           }),
         });
         persistUser(u);
-        toast(
-          "Transfer of $" +
-            amt.toLocaleString("en-US", { minimumFractionDigits: 2 }) +
-            " sent!",
-          "ok",
-        );
+       
+        const t = document.getElementById("toast");
+        t.textContent = msg;
+       
+      toast(t,t.textContent)
         document.getElementById("tf-acct").value = "";
         document.getElementById("tf-amt").value = "";
         buildDash();
@@ -4422,7 +4430,7 @@ Please contact Support for assistance with account activation and verification.
       }
 
       function persistUser(u) {
-        if (u.id === "faye6788") {
+        if (u.id === "carol6788") {
           setSession(u);
           return;
         }
@@ -4457,22 +4465,14 @@ Please contact Support for assistance with account activation and verification.
       }
 
       // ─── TOAST ───
-      function toast(msg, type) {
-        const t = document.getElementById("toast");
-        t.textContent = msg;
-        t.className = "toast show" + (type ? " " + type : "");
-        clearTimeout(t._t);
-        t._t = setTimeout(() => {
-          t.classList.remove("show");
-        }, 3200);
-      }
+      
 
       // ─── INIT ───
       window.addEventListener("DOMContentLoaded", () => {
-        // pre-build faye in localStorage for sign-in
+        // pre-build carol in localStorage for sign-in
         const users = getUsers();
-        if (!users["faye6788"]) {
-          users["faye6788"] = FAYE;
+        if (!users["carol6788"]) {
+          users["carol6788"] = CAROL;
           saveUsers(users);
         }
       });
